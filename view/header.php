@@ -7,4 +7,14 @@
     <link rel="stylesheet" href="view/css/main.css">
 </head>
 
+<?php
+if (isset($_GET["logout"])) {
+
+} elseif (isset($_GET["firstname"]) && !$_GET["firstname"] == false ) {
+	echo '<p>Hello '.$_GET["firstname"].'</p><a href="./index.php?logout">Logout</a>';
+} else {
+	echo '<a href="./index.php?register">Register Here</a>';
+}
+ ?>
+
 <body>

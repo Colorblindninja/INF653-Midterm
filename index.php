@@ -1,4 +1,8 @@
 <?php
+$lifetime = 60 * 60 * 24 * 14;
+session_set_cookie_params($lifetime, '/');
+session_start();
+
 define("ROOT",dirname(__FILE__).'/' );
 require(ROOT . '/model/database.php');
 require(ROOT . '/model/vehicle_db.php');
@@ -6,6 +10,18 @@ require(ROOT . '/model/make_db.php');
 require(ROOT . '/model/type_db.php');
 require(ROOT . '/model/class_db.php');
 include ROOT . '/view/header.php';
+
+if (isset($_GET["firstname"]) && !$_GET["firstname"] == false ) {
+	$_SESSION["userid"] = $_GET["firstname"];
+} elseif (isset($_GET["register"])) {
+	include ROOT . '/view/register.php';
+} elseif (isset($_GET["logout"])) {
+	include ROOT . '/view/logout.php';
+}
+
+
+
+
 
   //Delete logic, deleteType will be populated with what type of data we are going to delete, then handle for vehicle/class/make/type
 if(isset($_POST["deleteType"])) {
